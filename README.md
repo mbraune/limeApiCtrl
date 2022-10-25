@@ -32,7 +32,7 @@ p.stdin.flush()
 ### interface :
 - **LimeProc(cmdPath)** constructor
 - **alive()**       return True/False
-- **close()**       return void
+- **close()**       return True
 - **query(cmd)**    return Tuple (True/False, res0, res1, ...)
 
 ### example:
@@ -48,7 +48,7 @@ output
 (base) C:\Users\marti\OneDrive\source\py_lime>python limeProc.py
 LimeSDR-Mini serial  1D4C38442B51E1
 (True, '43.2476')
-(True, '15.36 MHz\n\t15.36 MHz')
+(True, '15.36 MHz', '15.36 MHz')
 ````
 ### open: timeout in constructor ?
 ### open: nonblocking readline

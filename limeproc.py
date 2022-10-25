@@ -32,10 +32,23 @@ class LimeProc:
             return True/False, res0, res1, ..
             run this only after init or write, else readline hangs
         """
-        resp = ""
-        while not ('cmd_ok' in resp or 'err_' in resp) :
-            resp += self.p.stdout.readline()
-        return ('cmd_ok' in resp), resp.replace("cmd_ok","").strip()
+        line = ""
+        resp = []
+        while not ('cmd_ok' in line or 'err_' in line) :
+            line = self.p.stdout.readline()
+            resp.append(line.strip())
+        if ('cmd_ok' in resp[-1]):
+            if len(resp) == 1:
+                return True
+            elif len(resp) == 2:
+                return True, resp[0]
+            elif len(resp) == 3:
+                return True, resp[0], resp[1]
+            else:
+                return True, resp
+        else:
+            return False, resp
+        #return ('cmd_ok' in resp), resp.replace("cmd_ok","").strip()
 
     def __write(self, cmd):
         """ private 
@@ -61,6 +74,7 @@ class LimeProc:
         """ close connection """
         self.__write('close')
         self.p.kill()
+        return True;
 
     def query(self, cmd):
         """ send write and read,  
