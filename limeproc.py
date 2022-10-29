@@ -10,6 +10,7 @@ interactive control LimeTxcw.exe
 """
 import subprocess
 from subprocess import Popen, PIPE
+import time
 
 class LimeProc:
     def __init__(self, cmdPath, timeout=10):
@@ -17,7 +18,7 @@ class LimeProc:
         self.p = Popen(cmdPath, text=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
         if self.alive():
-            self.__read()  # flush initial startup messages 
+            self.__read(0.5)  # flush initial startup messages 
             if self.query('devid')[0] == True:
                 self.instId = self.query('devid')[1]
                 print("LimeSDR-Mini serial ", self.instId)
@@ -26,7 +27,7 @@ class LimeProc:
         else:
             print("error creating Lime process ",cmdPath)
 
-    def __read(self):
+    def __read(self, twait=0):
         """ private
             readline until cmd_ok or err_ in response
             return True/False, res0, res1, ..
@@ -38,6 +39,7 @@ class LimeProc:
             line = self.p.stdout.readline()
             resp.append(line.strip())
         if ('cmd_ok' in resp[-1]):
+            time.sleep(twait)
             if len(resp) == 1:
                 return True
             elif len(resp) == 2:
@@ -50,7 +52,7 @@ class LimeProc:
             return False, resp
         #return ('cmd_ok' in resp), resp.replace("cmd_ok","").strip()
 
-    def __write(self, cmd):
+    def __write(self, cmd, twait=0):
         """ private 
             write command to process, 
             return True if process alive
@@ -59,6 +61,7 @@ class LimeProc:
             msg = f'{cmd}\n'
             self.p.stdin.write(msg)
             self.p.stdin.flush()
+            time.sleep(twait)
             return True
         else:
             return False
@@ -76,13 +79,14 @@ class LimeProc:
         self.p.kill()
         return True;
 
-    def query(self, cmd):
+    def query(self, cmd, twait=0):
         """ send write and read,  
             if ok return tuple (True, res0,..)
             else  return False
         """
-        if self.__write(cmd):
-            return self.__read()
+        #print("query twait ", twait)
+        if self.__write(cmd,twait):
+            return self.__read(twait)
         else:
             return False;
 
