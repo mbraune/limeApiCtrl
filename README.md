@@ -33,20 +33,24 @@ p.stdin.flush()
 - **LimeProc(cmdPath)** constructor
 - **alive()**       return True/False
 - **close()**       return True
-- **query(cmd)**    return Tuple (True/False, res0, res1, ...)
+- **query(cmd,twait)**    return Tuple (True/False, res0, res1, ...)
+- **instId**        return deviceID
 
 ### example:
     """Tests init lime """
     limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
     lime = LimeProc(limecmd)
+
+    print(lime.instId)
     print(lime.query('getchiptemperature(0)'))
     print(lime.query('getsamplerate(tx,0)'))
     lime.close()
 
 output
 ````
-(base) C:\Users\marti\OneDrive\source\py_lime>python limeProc.py
+(base) ..\limeApiCtrl>python lime_test1.py
 LimeSDR-Mini serial  1D4C38442B51E1
+1D4C38442B51E1
 (True, '43.2476')
 (True, '15.36 MHz', '15.36 MHz')
 ````

@@ -14,6 +14,7 @@ def lime_example1():
     limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
     lime = LimeProc(limecmd)
 
+    print(lime.instId)
     print(lime.query('getchiptemperature(0)'))
     print(lime.query('getsamplerate(tx,0)'))
     lime.close()
@@ -24,6 +25,7 @@ def lime_example2():
     limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
     lime = LimeProc(limecmd)
 
+    print("devid", lime.instId)
     print("ChipTemperature  ", lime.query('getchiptemperature(0)'))
     print("Tx Antenna       ", lime.query('getantenna(tx,0)'))
     print("Tx Samplerate    ", lime.query('getsamplerate(tx,0)'))
@@ -32,16 +34,18 @@ def lime_example2():
     print("Clockfreq 0      ", lime.query('getclockfreq(0)'))
     print("Clockfreq 1      ", lime.query('getclockfreq(1)'))
     print("Clockfreq 2      ", lime.query('getclockfreq(2)'))
-    print("GainDB           ", lime.query('getgaindb(tx,0)'))
+    print("NormalizedGain   ", lime.query('getnormalizedgain(tx,0)'))
 
-    print("Samplerate 12,4  ", lime.query('setsamplerate(12,4)'))
+
     print("LO Freq 1600     ", lime.query('setlofrequency(tx,0,1600)'))
+    print("NormalizedGain   ", lime.query('setnormalizedgain(tx,0,0.3)'))
     print("EnableChannel On ", lime.query('enablechannel(tx,0,1)'))
+    print("Samplerate 12,4  ", lime.query('setsamplerate(12,4)'))
     lime.close()
 
 
 def main():
-    lime_example2()
+    lime_example1()
 
 if __name__ == '__main__':
     main()
