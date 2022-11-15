@@ -11,7 +11,7 @@ import time
 
 def lime_example1():
     """Tests init lime """
-    limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
+    limecmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
     lime = LimeProc(limecmd)
 
     print(lime.instId)
@@ -22,7 +22,7 @@ def lime_example1():
 
 def lime_example2():
     """ init lime , set freq"""
-    limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
+    limecmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
     lime = LimeProc(limecmd)
 
     print("devid", lime.instId)

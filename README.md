@@ -9,7 +9,7 @@ uses subprocess , popen
 ````
 import subprocess
 from subprocess import Popen, PIPE
-cmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
+cmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
 p = Popen(cmd, text=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
 print(p.poll())			None
@@ -38,7 +38,7 @@ p.stdin.flush()
 
 ### example:
     """Tests init lime """
-    limecmd = ['d:\\tools\\limeApiTx\\LimeTxCw.exe']
+    limecmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
     lime = LimeProc(limecmd)
 
     print(lime.instId)
