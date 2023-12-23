@@ -2,7 +2,7 @@
 limeProc.py
 
 ---
-interactive control LimeTxcw.exe
+interactive control LimeApiCmd.exe
     via subprocess, uses stdin + stdout
     text only
 -

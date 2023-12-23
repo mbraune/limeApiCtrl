@@ -52,7 +52,7 @@ def setout(lprc, on):
 # ---------------------------------------------------------------
 # ---------------------------------------------------------------
 def main():
-    limecmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
+    limecmd = ['d:\\tools\\LimeApiCmd\\LimeApiCmd.exe']
     lime = LimeProc(limecmd)
 
     init(lime)

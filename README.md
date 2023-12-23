@@ -1,15 +1,15 @@
 # limeApiCtrl
-interactive control LimeApiTx
+interactive control LimeApiCmd
 
 ## limeProc items
-control limeApiTx.exe via python 
+control limeApiCmd.exe via python 
 uses subprocess , popen
 
 ## python subprocess
 ````
 import subprocess
 from subprocess import Popen, PIPE
-cmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
+cmd = ['d:\\tools\\LimeApiCmd\\LimeApiCmd.exe']
 p = Popen(cmd, text=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
 
 print(p.poll())			None
@@ -38,7 +38,7 @@ p.stdin.flush()
 
 ### example:
     """Tests init lime """
-    limecmd = ['d:\\tools\\limeApiTx\\LimeApiTx.exe']
+    limecmd = ['d:\\tools\\LimeApiCmd\\LimeApiCmd.exe']
     lime = LimeProc(limecmd)
 
     print(lime.instId)
